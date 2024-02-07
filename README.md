@@ -12,7 +12,8 @@ Kaicheh , Chen., Chin, Lin., Patel, P. et al. Pretraining Approach for Small-sam
 
 ![image](https://github.com/ji9su/PASTER/blob/main/image/model.jpg)
 
-This repository contains code to train a self-supervised learning model on chest X-ray images that lack explicit annotations and evalute this model's performance on pathology-classification tasks.
+This repository contains code to train a multimodal transformer, pre-trained using free-text reports and their corresponding CXRs, and use linear model to combined with the embeddings extracted by our proposed model. Finally, evaluating this model's performance on 
+radiology and echocardiographic lablels.
 
 <details>
 
@@ -20,6 +21,9 @@ This repository contains code to train a self-supervised learning model on chest
     <b>Main Findings</b>
 </summary>
 
+1. **Using extremely small datasets can achieved the accuracy level of CNNs trained:** We used the control-to-case ratio of 3 for linear probing, about 128 cases and 384 controls. This result not only significant advantage over CNN in small-sample learning but also its continued better accuracy compared to CNN, particularly at the million-level training size. This may be due to the inherent advantages of the well-trained transformer over CNN in medical image analysis.
+
+2. **The success of PASTER was attributed to its effectiveness in contrastive learning:** Applying PASTER to zero-shot prediction for echocardiogram-related diseases also validated that the achieved accuracy significantly worse than ultimate results. Cardiovascular diseases once considered challenging for radiologists to identify directly. PASTER also demonstrates state-of-the-art accuracy in diseases that cannot be described in CXR reports, hinting at the potential of PASTER for further exploration of closely related CXR conditions. 
 </details>
 
 
@@ -34,10 +38,18 @@ To install Python dependencies:
 
 ## Data 
 ### Training Dataset
+1. We provide some example data, include csv and image files, in  `./data/*` directory.
+2. If you want to use youself data, you could replace example data and must follow eaxmple data formate.
 
 
 ### Evaluation Dataset
 
+#### CheXpert Dataset
+The CheXpert dataset comprises chest radiographic examinations from Stanford Hospital, conducted between October 2002 and July 2017, across both inpatient and outpatient centers. Population-level characteristics are not available for the CheXpert test dataset, as it is exclusively used for official evaluations on the CheXpert leaderboard.
+
+We utilized the CheXpert dataset to further evaluate the performance of small-sample learning,  can be accessed at https://aimi.stanford.edu/chexpert-chest-x-rays.
+
+The CheXpert **test** dataset has recently been made publicly accessible. You can locate it by following the instructions provided in the [cheXpert-test-set-labels](https://github.com/rajpurkarlab/cheXpert-test-set-labels) repository. 
 
 ## Running Training
 Run the following command to perform CheXzero pretraining. 
@@ -143,7 +155,7 @@ img_feat, img_path_list = run_single_prediction(
 
 #### :three: Run the api_predict script [run.py](./api_predict/run.py)
 
-![response message](./api_predict/pasterapis_test.png)
+![response message](pasterapis_test.png)
 
 ## Issues
 Please open new issue threads specifying the issue with the codebase or report issues directly to kaichiehkj@gmail.com.
