@@ -143,7 +143,7 @@ img_feat, img_path_list = run_single_prediction(
 
 #### :three: Run the api_predict script [run.py](./api_predict/run.py)
 
-![response message](pasterapis_test.png)
+![response message](./api_predict/pasterapis_test.png)
 
 ## Issues
 Please open new issue threads specifying the issue with the codebase or report issues directly to kaichiehkj@gmail.com.
