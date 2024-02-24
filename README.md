@@ -120,6 +120,10 @@ img_feat, img_path_list = run_single_prediction(
         QueryParameter : name (UserName)
         File : CXR image (Not supported multiple image)
 
+    Basic auth:
+        username : guest
+        password : guest@random
+
     Response:
         Status : 200 OK
         Content : {
@@ -129,12 +133,16 @@ img_feat, img_path_list = run_single_prediction(
         extracted_feature shape : (512,)
 ```
 
-#### :two: Linear Probe Methods
+#### :two: Linear Probe Methods 
 ```
     POST /linear-probe/models/all
     
     Input:
         data : feature result from feature extraction api
+    
+    Basic auth:
+        username : guest
+        password : guest@random
 
     Response:
         Status : 200 OK
@@ -153,9 +161,9 @@ img_feat, img_path_list = run_single_prediction(
             ]
 ```
 
-#### :three: Run the api_predict script [run.py](./api_predict/run.py)
+#### :three: Run the test script [run.py](./test/run.py)
 
-![response message](./api_predict/pasterapis_test.png)
+![response message](./test/pasterapis_test.png)
 
 ## Issues
 Please open new issue threads specifying the issue with the codebase or report issues directly to kaichiehkj@gmail.com.
